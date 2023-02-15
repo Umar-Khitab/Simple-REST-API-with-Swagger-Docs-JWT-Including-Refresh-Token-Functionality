@@ -1,0 +1,91 @@
+{
+  "swagger": "2.0",
+    "info": {
+      "title": "API for User Authentication",
+      "version": "1.0.0",
+      "description": "This API is for user authentication and token generation."
+    },
+    "paths": {
+      "/authenticate": {
+        "post": {
+          "tags": [
+            "User authentication"
+          ],
+          "summary": "Authenticate the user and generate access and refresh tokens.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "The access token received after user login.",
+                      "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYmZlMjhjMDRlMjRmMDAyN2Q2MzVjMiIsImlhdCI6MTYyMjUzMjU0NywiZXhwIjoxNjIyNTM2MTQ3fQ.S4JQxm1TmTvQjJ1lNNtN9ztPvC20givJjK-oEmyx_aA"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful authentication",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "description": "The user's unique ID."
+                          },
+                          "username": {
+                            "type": "string",
+                            "description": "The username."
+                          },
+                          "email": {
+                            "type": "string",
+                            "description": "The user's email address."
+                          }
+                        }
+                      },
+                      "accessToken": {
+                        "type": "string",
+                        "description": "The access token."
+                      },
+                      "refreshToken": {
+                        "type": "string",
+                        "description": "The refresh token."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized access",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "description": "The error message."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

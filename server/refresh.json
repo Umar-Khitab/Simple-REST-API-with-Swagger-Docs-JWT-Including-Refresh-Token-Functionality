@@ -1,0 +1,40 @@
+"/refresh-token": {
+    "post": {
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "summary": "Refresh access token",
+      "description": "Endpoint to refresh the access token",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "token",
+          "description": "Refresh token",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Success",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "accessToken": {
+                "type": "string",
+                "description": "New access token"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    }
+  },
